@@ -1,6 +1,4 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -11,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('header nav a, .footer-links a');
     
     navLinks.forEach(link => {
@@ -24,19 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    // Close mobile menu if open
                     if (navMenu.classList.contains('active')) {
                         navMenu.classList.remove('active');
                         menuToggle.classList.remove('active');
                     }
                     
-                    // Scroll to the target element
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                     
-                    // Update active link
                     navLinks.forEach(link => link.classList.remove('active'));
                     this.classList.add('active');
                 }
@@ -44,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Toggle attractions visibility
     const toggleButtons = document.querySelectorAll('.toggle-attractions');
     
     toggleButtons.forEach(button => {
@@ -62,13 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Gallery filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Update active button
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
@@ -92,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Scroll to top button
     const scrollTopButton = document.getElementById('scroll-top');
     
     window.addEventListener('scroll', function() {
@@ -110,11 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Highlight active navigation based on scroll position
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
         
-        // Get all sections
         const sections = document.querySelectorAll('section');
         
         sections.forEach(section => {
@@ -133,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add animation on scroll
     const animateOnScroll = function() {
         const elements = document.querySelectorAll('.place-card, .gallery-item, .about-content');
         
@@ -147,13 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
     
-    // Initial check for elements in view
     animateOnScroll();
     
-    // Check for elements in view on scroll
     window.addEventListener('scroll', animateOnScroll);
     
-    // Add dynamic background parallax effect
     const hero = document.querySelector('.hero');
     
     window.addEventListener('scroll', function() {
@@ -163,28 +147,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Image lazy loading
     if ('loading' in HTMLImageElement.prototype) {
         const images = document.querySelectorAll('img[loading="lazy"]');
         images.forEach(img => {
             img.src = img.dataset.src;
         });
     } else {
-        // Fallback for browsers that don't support lazy loading
         const script = document.createElement('script');
         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
         document.body.appendChild(script);
     }
 });
 
-// Create a dynamic timeline effect
 function createTimelineEffect() {
     const timeline = document.querySelector('.timeline');
     const placeCards = document.querySelectorAll('.place-card');
     
     if (!timeline || placeCards.length === 0) return;
     
-    // Add alternating classes for left/right layout on larger screens
     if (window.innerWidth > 992) {
         placeCards.forEach((card, index) => {
             if (index % 2 === 0) {
@@ -196,17 +176,14 @@ function createTimelineEffect() {
     }
 }
 
-// Initialize timeline effect
 window.addEventListener('load', createTimelineEffect);
 window.addEventListener('resize', createTimelineEffect);
 
-// Add image preview functionality
 function setupImagePreview() {
     const galleryImages = document.querySelectorAll('.gallery-item img');
     
     galleryImages.forEach(img => {
         img.addEventListener('click', function() {
-            // Create modal elements
             const modal = document.createElement('div');
             modal.classList.add('image-preview-modal');
             
@@ -223,23 +200,19 @@ function setupImagePreview() {
             const caption = document.createElement('p');
             caption.textContent = this.parentElement.querySelector('.gallery-overlay h3').textContent;
             
-            // Append elements
             modalContent.appendChild(closeBtn);
             modalContent.appendChild(image);
             modalContent.appendChild(caption);
             modal.appendChild(modalContent);
             document.body.appendChild(modal);
             
-            // Prevent body scrolling
             document.body.style.overflow = 'hidden';
             
-            // Show modal with animation
             setTimeout(() => {
                 modal.style.opacity = '1';
                 modalContent.style.transform = 'translateY(0)';
             }, 10);
             
-            // Close modal functionality
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
@@ -259,10 +232,7 @@ function setupImagePreview() {
     });
 }
 
-// Initialize image preview
 window.addEventListener('load', setupImagePreview);
-
-// Add CSS for image preview modal
 const styleSheet = document.createElement('style');
 styleSheet.textContent = `
     .image-preview-modal {

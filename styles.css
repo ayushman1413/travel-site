@@ -193,7 +193,6 @@ header {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Timeline Section */
 .timeline-section {
     padding: 80px 0;
     background-color: #f9f9f9;
@@ -205,17 +204,16 @@ header {
     margin: 0 auto;
 }
 
-/* Removed the blue vertical line */
-/* .timeline::before {
+.timeline::before {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 3px;
+    width: 5px;
     background-color: var(--primary-color);
     transform: translateX(-50%);
-} */
+}
 
 .place-card.left {
     margin-right: 55%;
@@ -227,27 +225,29 @@ header {
     position: relative;
 }
 
-/* Removed the blue horizontal connecting lines */
+
 /* .place-card.left::after,
 .place-card.right::after {
     content: '';
     position: absolute;
     top: 40px;
-    left: 50%;
+    left: 70%;
     width: 55%;
     height: 3px;
     background-color: var(--primary-color);
     border-radius: 2px;
     transform-origin: left;
-}
+} */
 
-.place-card.left::after {
+
+
+ .place-card.left::after {
     transform: translateX(0);
-}
+} 
 
 .place-card.right::after {
     transform: translateX(-100%);
-} */
+}
 
 .place-card {
     background-color: white;
